@@ -2,7 +2,8 @@
 #define IRC_H_GUARD
 
 #include "socket.h"
-#include <threads>
+#include <thread>
+#include <queue>
 
 class IRCConnection {
 public:
@@ -20,11 +21,15 @@ public:
 	void CmdNick(std::string nick);
 	void CmdPart(std::string channel);
 	void CmdPart(std::string channel, std::string reason);
+	void CmdQuit();
+	void CmdQuit(std::string reason);
 	void CmdUser(std::string username, std::string realname);
 
 private:
 	TCPClient tcp;
 	std::thread thr;
+	bool done;
+	std::queue<std::string> txqueue;
 };
 
 #endif

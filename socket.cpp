@@ -1,5 +1,7 @@
 #include "socket.h"
 
+TCPClient::TCPClient() { }
+
 void TCPClient::Connect(std::string host, int port) {
 	char portstr[16];
 	printf(portstr, "%d", port);
