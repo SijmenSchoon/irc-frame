@@ -1,3 +1,13 @@
 #!/usr/bin/make -f
+
+LIBS=-lboost_regex
+SOURCES=src/irc.cpp src/socket.cpp src/main.cpp
+OUTPUT=irc-frame
+CFLAGS=-std=c++11 -pthread
+
 all:
-	g++ src/irc.cpp src/socket.cpp src/main.cpp -o irc-frame -std=c++11
+	g++ $(SOURCES) -o $(OUTPUT) $(CFLAGS) $(LIBS)
+	
+dbg:
+	g++ -g -DDEBUG $(SOURCES) -o $(OUTPUT) $(CFLAGS) $(LIBS)
+	
